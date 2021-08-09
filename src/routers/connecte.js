@@ -3,31 +3,8 @@ const router = express.Router()
 const bcrypt = require('bcrypt')
 const Registration = require('../models/registration')
 const Post = require('../models/post')
-router.get('/post', async (req, res) => {
-  try {
-    const connecte = await Post.find()
-    res.json(connecte)
-  } catch (es) {
-    res.send('Error' + es)
-  }
-})
-router.post('/post', async (req, res) => {
-  const post = new Post({
-    catagory: req.body.catagory,
-    postTitle: req.body.postTitle,
-    postBody: req.body.postBody,
-    comment: req.body.comment,
-  })
 
-  try {
-    const a1 = await post.save()
-    res.json(a1)
-  } catch (es) {
-    res.send('Error')
-  }
-})
-
-router.get('/', async (req, res) => {
+router.get('/registration', async (req, res) => {
   try {
     const connecte = await Registration.find()
     res.json(connecte)
@@ -36,7 +13,7 @@ router.get('/', async (req, res) => {
   }
 })
 
-router.get('/:id', async (req, res) => {
+router.get('/registration/:id', async (req, res) => {
   try {
     const registration = await Registration.findById(req.params.id)
     res.json(registration)
@@ -60,7 +37,7 @@ router.post('/registration', async (req, res) => {
   }
 })
 
-router.patch('/:id', async (req, res) => {
+router.patch('/registration/:id', async (req, res) => {
   try {
     const registration = await Registration.findById(req.params.id)
     registration.name = req.body.name
@@ -74,7 +51,7 @@ router.patch('/:id', async (req, res) => {
   }
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/registration/:id', async (req, res) => {
   try {
     const registration = await Registration.findById(req.params.id)
     registration.email = req.body.email
@@ -108,6 +85,30 @@ router.post('/login', async (req, res) => {
     // }
   } catch (es) {
     res.send('Error2')
+  }
+})
+
+router.get('/post', async (req, res) => {
+  try {
+    const connecte = await Post.find()
+    res.json(connecte)
+  } catch (es) {
+    res.send('Error' + es)
+  }
+})
+router.post('/post', async (req, res) => {
+  const post = new Post({
+    catagory: req.body.catagory,
+    postTitle: req.body.postTitle,
+    postBody: req.body.postBody,
+    comment: req.body.comment,
+  })
+
+  try {
+    const a1 = await post.save()
+    res.json(a1)
+  } catch (es) {
+    res.send('Error')
   }
 })
 
