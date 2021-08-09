@@ -4,9 +4,19 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  post: {
+  postTitle: {
     type: String,
     required: true,
   },
+  postBody: {
+    type: String,
+    required: true,
+  },
+  comment: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
 })
 module.exports = mongoose.model('post', postSchema)

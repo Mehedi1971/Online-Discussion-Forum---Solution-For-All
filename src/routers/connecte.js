@@ -14,7 +14,9 @@ router.get('/post', async (req, res) => {
 router.post('/post', async (req, res) => {
   const post = new Post({
     catagory: req.body.catagory,
-    post: req.body.post,
+    postTitle: req.body.postTitle,
+    postBody: req.body.postBody,
+    comment: req.body.comment,
   })
 
   try {
