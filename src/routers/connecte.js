@@ -77,12 +77,6 @@ router.post('/login', async (req, res) => {
     } else {
       res.send('Error1')
     }
-    // if (registration.password === password) {
-    //   const a1 = await registration.save()
-    //   res.json(a1)
-    // } else {
-    //   res.send('Error')
-    // }
   } catch (es) {
     res.send('Error2')
   }
@@ -101,7 +95,12 @@ router.post('/post', async (req, res) => {
     catagory: req.body.catagory,
     postTitle: req.body.postTitle,
     postBody: req.body.postBody,
-    comment: req.body.comment,
+
+    comments: [
+      {
+        comment: req.body.comments[0].comment,
+      },
+    ],
   })
 
   try {
@@ -109,6 +108,15 @@ router.post('/post', async (req, res) => {
     res.json(a1)
   } catch (es) {
     res.send('Error')
+  }
+})
+
+router.get('/post/:id', async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id)
+    res.json(post)
+  } catch (es) {
+    res.send('Error' + es)
   }
 })
 

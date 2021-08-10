@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+
 const postSchema = new mongoose.Schema({
   catagory: {
     type: String,
@@ -12,10 +13,13 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  comment: [
+
+  comments: [
     {
-      type: String,
-      required: true,
+      comment: {
+        type: String,
+        required: true,
+      },
     },
   ],
 })

@@ -4,7 +4,11 @@ const url = 'mongodb://localhost/connecte'
 
 const app = express()
 
-mongoose.connect(url, { useNewUrlParser: true, useCreateIndex: true })
+mongoose.connect(url, {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology: true,
+})
 const con = mongoose.connection
 
 con.on('open', () => {
